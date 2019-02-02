@@ -18,12 +18,12 @@ Check the demo video in DEMO folder for a glimpse of how the assistant works on 
 3. Supports data description, data cleaning and data visualisation.
 4. Supports pairplot for v0.1.
 5. Supports cleaning the dataset for any NAN values on request.
-6. Supports 5 clasification models - 
-  *Logisitic regression
-  K Neighbors Classifier
-  Decision Tree Classifier
-  Gaussian NB Classifier
-  Support Vector Classifier*
+6. Supports 5 clasification models -  <br>
+  *Logisitic regression <br>
+  K Neighbors Classifier <br>
+  Decision Tree Classifier <br>
+  Gaussian NB Classifier <br>
+  Support Vector Classifier* <br>
 7. Supports Train-Test splits and K Fold cross validation.
 
 ### **Anna v0.2 features - **
