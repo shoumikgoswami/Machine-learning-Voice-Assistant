@@ -8,12 +8,12 @@ Check the demo video in DEMO folder for a glimpse of how the assistant works on 
 
 ### **Anna v0.1 features -**
 
-1. Support OSEMN data pipeline - 
-  *O — Obtaining our data
-  S — Scrubbing / Cleaning our data
-  E — Exploring / Visualizing our data will allow us to find patterns and trends
-  M — Modeling our data will give us our predictive power as a wizard
-  N — Interpreting our data*
+1. Support OSEMN data pipeline - <br>
+  *O — Obtaining our data <br>
+  S — Scrubbing / Cleaning our data <br>
+  E — Exploring / Visualizing our data will allow us to find patterns and trends <br>
+  M — Modeling our data will give us our predictive power as a wizard <br>
+  N — Interpreting our data* <br>
 2. Supports uploading a CSV dataset using file browser.
 3. Supports data description, data cleaning and data visualisation.
 4. Supports pairplot for v0.1.
