@@ -1,3 +1,39 @@
+''' Anna v0.2 - Your personal assitant for building machine learning models.
+Creator - @shoumikgoswami
+The idea is to create a voice enabled assistant which can run automated statistical analysis on any given dataset and any model on top of it.
+
+Check the demo video in DEMO folder for a glimpse of how the assistant works on voice commands.
+
+Anna v0.1 features -
+1. Support OSEMN data pipeline - 
+	O — Obtaining our data 
+	S — Scrubbing / Cleaning our data 
+	E — Exploring / Visualizing our data will allow us to find patterns and trends 
+	M — Modeling our data will give us our predictive power as a wizard 
+	N — Interpreting our data 
+2. Supports uploading a CSV dataset using file browser.
+3. Supports data description, data cleaning and data visualisation.
+4. Supports pairplot for v0.1.
+5. Supports cleaning the dataset for any NAN values on request.
+6. Supports 5 clasification models - 
+	Logisitic regression 
+	K Neighbors Classifier 
+	Decision Tree Classifier 
+	Gaussian NB Classifier 
+	Support Vector Classifier 
+7. Supports Train-Test splits and K Fold cross validation.
+
+**Anna v0.2 features - ** [Current version]
+1. Support multiple visualisations on request.
+2. Support multiple models and reports.
+3. Support downloading models to disk. 
+
+How to use Anna - 
+1. Install necessary dependencies
+2. Create a API access token in wit.ai 
+3. Update token in speech_to_text.py file'''
+
+
 from speech_to_text import RecognizeSpeech
 import random
 import datetime
@@ -5,11 +41,6 @@ import pyttsx3
 import speech_recognition as sr
 import pandas as pd
 from data_analysis import loaddata, describedata, generategraphs, build_model
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.svm import SVC
 import sys
 
 
@@ -23,11 +54,9 @@ rate = engine.getProperty('rate')
 engine.setProperty('rate', rate - 25)
 
 greetings = ['hey there anna', 'hello anna', 'hi anna', 'Hai anna', 'hey! anna', 'hey anna']
-question = ['how are you', 'how are you doing']
-responses = ['Okay', "I'm fine"]
 var1 = ['upload a dataset', 'load dataset', 'load data', 'upload data']
-var2 = ['what can you do?', 'show me your skills','show options', 'help me']
-var3 = ['describe the dataset', 'what is in my dataset', 'can you describe the dataset', 'describe the data']
+var2 = ['what can you do', 'show me your skills','show options', 'help me']
+var3 = ['describe the dataset', 'what is in my dataset', 'can you describe the dataset', 'describe the data', 'describe data']
 var4 = ['clean the dataset', 'clean dataset', 'clean the data', 'clean my dataset', 'clean the data set']
 var5 = ['visualize','generate graphs', 'create graphs', 'visualize the dataset', 'create plots', 'plot the dataset', 'show the dataset', 'build plots']
 var6 = ['build models', 'build a classification model', 'create a classification model', 'build model']
@@ -48,7 +77,7 @@ try:
 		if text in greetings:
 			print("Hello! I am Anna, your personal data analysis assistant. I can help you analyze your data and build machine learning models. What would you like me to do today?")
 			engine.say("Hello! I am Anna, your personal data analysis assistant. I can help you analyze your data and build machine learning models. What would you like me to do today?")
-			print("Hint - Upload a dataset")
+			print("Hint - Ask me what I can do")
 			engine.runAndWait()
 		elif text in var1:
 			engine.say("Sure, please provide the link to dataset")
@@ -135,27 +164,42 @@ try:
 				engine.say("Hold on let me build the model for you.")
 				print("Hold on let me build the model for you.")
 				engine.runAndWait()
-				build_model('Logistic Regression model: ',LogisticRegression(), X, Y)
+				build_model('Logistic Regression model', X, Y)
+				engine.say("Done! I have also saved a copy of the model for you.")
+				print("Done! I have also saved a copy of the model for you.")
+				engine.runAndWait()
 			elif model_name in KNN:
 				engine.say("Hold on let me build the model for you.")
 				print("Hold on let me build the model for you.")
 				engine.runAndWait()
-				build_model('K Neighbors Classifier: ',KNeighborsClassifier(), X, Y)
+				build_model('K Neighbors Classifier', X, Y)
+				engine.say("Done! I have also saved a copy of the model for you.")
+				print("Done! I have also saved a copy of the model for you.")
+				engine.runAndWait()
 			elif model_name in CART:
 				engine.say("Hold on let me build the model for you.")
 				print("Hold on let me build the model for you.")
 				engine.runAndWait()
-				build_model('Decision Tree Classifier: ',DecisionTreeClassifier(), X, Y)
+				build_model('Decision Tree Classifier', X, Y)
+				engine.say("Done! I have also saved a copy of the model for you.")
+				print("Done! I have also saved a copy of the model for you.")
+				engine.runAndWait()
 			elif model_name in NB:
 				engine.say("Hold on let me build the model for you.")
 				print("Hold on let me build the model for you.")
 				engine.runAndWait()
-				build_model('Gaussian NB: ',GaussianNB(), X, Y)
+				build_model('Gaussian NB', X, Y)
+				engine.say("Done! I have also saved a copy of the model for you.")
+				print("Done! I have also saved a copy of the model for you.")
+				engine.runAndWait()
 			elif model_name in SVC:
 				engine.say("Hold on let me build the model for you.")
 				print("Hold on let me build the model for you.")
+				engine.runAndWait()	
+				build_model('Support Vector Classifier', X, Y)
+				engine.say("Done! I have also saved a copy of the model for you.")
+				print("Done! I have also saved a copy of the model for you.")
 				engine.runAndWait()
-				build_model('Support Vector Classifier: ',SVC(), X, Y)
 			else:
 				engine.say("Please choose a model")
 				engine.runAndWait()
