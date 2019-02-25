@@ -16,6 +16,8 @@ import numpy as np
 import pickle
 import warnings
 warnings.filterwarnings("ignore")
+from sklearn.exceptions import DataConversionWarning
+warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 
 def loaddata():
 	rep = askopenfilenames(initialdir='/', initialfile='tmp',
@@ -63,7 +65,7 @@ def build_model(name, X, Y):
 		Y = Y.astype('str')
 	X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=1001)
 	if name in ('Logistic Regression model'):
-		clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='multinomial')
+		clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='multinomial', max_iter=1000)
 	elif name in ('K Neighbors Classifier'):
 		clf = KNeighborsClassifier()
 	elif name in ('Decision Tree Classifier'):
