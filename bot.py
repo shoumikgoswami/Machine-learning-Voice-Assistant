@@ -5,10 +5,18 @@ The idea is to create a voice enabled assistant which can run automated statisti
 Check the demo video in DEMO folder for a glimpse of how the assistant works on voice commands.
 
 Version 0.3 changelog - 
-1. Modular codes to allow jump offs
-2. Login-Log off feature
-3. Voice and Chat support
-4. Intent to action matching
+1. Modular code (function based for easy jump offs)
+2. Login and Log off feature
+3. Text to intent and action matching (inputs are generalized now, no hard coded commands)
+4. Voice and chat support based on user selection
+5. User can directly upload data and ask the bot to build a model (does not have to go through the entire pipeline and select a model from the list)
+6. Request based data exploration
+- Includes head, tail functions based on user specified rows
+- Data distribution details
+- Display unique values in the columns
+- Display columns with NAN values
+- Display count of columns per data type
+
 
 How to use Anna - 
 1. Install necessary dependencies
@@ -380,6 +388,186 @@ def model_builder(mode, model_name, X, Y):
 	else:
 		get_mode()
 
+def cmd_data_exploration(mode,data):
+	if mode == 'TEXT':
+		print('**********************************************************')
+		print('How can I help you explore the data?')
+		text =  get_text(mode)
+		explore_type,row_num = get_intent(text)
+		if explore_type == 'head':
+			print('Here are the top ',row_num, 'rows: ', data.head(row_num))
+			print('Do you want to continue?')
+			text = get_text(mode)
+			if text == 'yes':
+				cmd_data_exploration(mode,data)
+			else:
+				return
+			return 
+		elif explore_type == 'tail':
+			print('Here are the bottom ',row_num, 'rows: ', data.tail(row_num))
+			print('Do you want to continue?')
+			text = get_text(mode)
+			if text == 'yes':
+				cmd_data_exploration(mode,data)
+			else:
+				return
+			return 
+		elif explore_type == 'distribution':
+			print(data.describe())
+			print('Do you want to continue?')
+			text = get_text(mode)
+			if text == 'yes':
+				cmd_data_exploration(mode,data)
+			else:
+				return
+			return 
+		elif explore_type == 'data type':
+			count = data.dtypes.value_counts() 
+			for i in count.index: print('The number of ', i, 'objects is ', count[i])
+			print('Do you want to continue?')
+			text = get_text(mode)
+			if text == 'yes':
+				cmd_data_exploration(mode,data)
+			else:
+				return
+			return 
+		elif explore_type == 'unique':
+			for col in data.columns.values:
+				if data[col].dtype=='object':
+					print('*************************************************************************')
+					print("Unique value in",col, "is: ",data[col].unique())
+					print('*************************************************************************')
+			print('Do you want to continue?')
+			text = get_text(mode)
+			if text == 'yes':
+				cmd_data_exploration(mode,data)
+			else:
+				return
+			return 
+		elif explore_type == 'missing':
+			if data.isnull().values.any() == True:
+				null_col = data.isnull().sum(axis = 0)
+				null_col[null_col != 0]
+				print('Do you want to continue?')
+				text = get_text(mode)
+				if text == 'yes':
+					cmd_data_exploration(mode,data)
+				else:
+					return
+				return 
+			else:
+				print("Dataset is already clean.")
+				print('Do you want to continue?')
+				text = get_text(mode)
+				if text == 'yes':
+					cmd_data_exploration(mode,data)
+				else:
+					return
+				return 
+		text =  get_text(mode)
+		cmd = get_intent(text)
+	elif mode == 'VOICE':
+		print('**********************************************************')
+		engine.say('How can I help you explore the data?')
+		print('How can I help you explore the data?')
+		engine.runAndWait()
+		text =  get_text(mode)
+		explore_type,row_num = get_intent(text)
+		if explore_type == 'head':
+			engine.say('Here are the top ',row_num, 'rows')
+			print('Here are the top ',row_num, 'rows: ', data.head(row_num))
+			engine.runAndWait()
+			engine.say('Do you want to continue?')
+			print('Do you want to continue?')
+			engine.runAndWait()
+			text = get_text(mode)
+			if text == 'yes':
+				cmd_data_exploration(mode,data)
+			else:
+				return
+			return 
+		elif explore_type == 'tail':
+			engine.say('Here are the bottom ',row_num, 'rows')
+			print('Here are the bottom ',row_num, 'rows: ', data.tail(row_num))
+			engine.runAndWait()
+			engine.say('Do you want to continue?')
+			print('Do you want to continue?')
+			engine.runAndWait()
+			text = get_text(mode)
+			if text == 'yes':
+				cmd_data_exploration(mode,data)
+			else:
+				return 
+			return
+		elif explore_type == 'distribution':
+			print(data.describe())
+			engine.say('Do you want to continue?')
+			print('Do you want to continue?')
+			engine.runAndWait()
+			text = get_text(mode)
+			if text == 'yes':
+				cmd_data_exploration(mode,data)
+			else:
+				return 
+			return
+		elif explore_type == 'data type':
+			count = data.dtypes.value_counts() 
+			for i in count.index: print('The number of ', i, 'objects is ', count[i])
+			engine.say('Do you want to continue?')
+			print('Do you want to continue?')
+			engine.runAndWait()
+			text = get_text(mode)
+			if text == 'yes':
+				cmd_data_exploration(mode,data)
+			else:
+				return
+			return 
+		elif explore_type == 'unique':
+			for col in data.columns.values:
+				if data[col].dtype=='object':
+					print('*************************************************************************')
+					print("Unique value in",col, "is: ",data[col].unique())
+					print('*************************************************************************')
+			engine.say('Do you want to continue?')
+			print('Do you want to continue?')
+			engine.runAndWait()
+			text = get_text(mode)
+			if text == 'yes':
+				cmd_data_exploration(mode,data)
+			else:
+				return
+			return 
+		elif explore_type == 'missing':
+			if data.isnull().values.any() == True:
+				null_col = data.isnull().sum(axis = 0)
+				null_col[null_col != 0]
+				engine.say('Do you want to continue?')
+				print('Do you want to continue?')
+				engine.runAndWait()
+				text = get_text(mode)
+				if text == 'yes':
+					cmd_data_exploration(mode,data)
+				else:
+					return 
+				return
+			else:
+				engine.say("Dataset is already clean.")
+				print("Dataset is already clean.")
+				engine.runAndWait()
+				engine.say('Do you want to continue?')
+				print('Do you want to continue?')
+				engine.runAndWait()
+				text = get_text(mode)
+				if text == 'yes':
+					cmd_data_exploration(mode,data)
+				else:
+					return
+				return 
+		text =  get_text(mode)
+		cmd = get_intent(text)
+	else:
+		get_mode()
+
 # ********************** Initiate Anna **********************
 
 print("************* Initiating Anna *************")
@@ -410,6 +598,8 @@ try:
 			cmd_visualize(mode, data)
 		elif cmd == '6B':
 			cmd_build_model(mode, model_type, data)
+		elif cmd == '7E':
+			cmd_data_exploration(mode,data)
 		elif cmd == 'bye':
 			engine.say("Thank you for using me.")
 			print("Thank you for using me.")

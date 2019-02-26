@@ -27,6 +27,14 @@ def get_intent(text):
 		command_type, model_type = 0, intent['entities']['model'][0]['value']
 	elif ('bye' in intent['entities'].keys()) & ('intent' not in intent['entities'].keys()):
 		command_type, model_type = intent['entities']['bye'][0]['value'], 0
+	elif ('explore' in intent['entities'].keys()) & ('intent' not in intent['entities'].keys()):
+		explore_type =  intent['entities']['explore'][0]['value']
+		if ('number' in intent['entities'].keys()):
+			row_num = intent['entities']['number'][0]['value']
+		else:
+			row_num = 0
+		command_type = ''
+		model_type = ''
 	else:
 		command_type, model_type = intent['entities']['intent'][0]['value'], 0
 	if command_type == 'upload data':
@@ -41,6 +49,8 @@ def get_intent(text):
 		cmd = '5V'
 	elif command_type == 'build model':
 		cmd = '6B'
+	elif command_type == 'data exploration':
+		cmd = '7E'
 	elif model_type != 0:
 		cmd = 'model'
 	elif command_type == 'true':
@@ -59,6 +69,8 @@ def get_intent(text):
 		model_type = 'SVC'
 	else:
 		model_type = 0
-	return cmd, model_type
-
+	if len(command_type)>0:
+		return cmd, model_type
+	elif (len(explore_type)>0) & (len(command_type)==0):
+		return explore_type, row_num
 
