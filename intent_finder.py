@@ -19,7 +19,7 @@ svm classifier
 '''
 
 def get_intent(text):
-	client = Wit('UXH7HZWOS3WUFCZHOH3WYDUSM3ZIJG26')
+	client = Wit('Enter WIT Token here')
 	intent = client.message(text)
 	if ('model' in intent['entities'].keys()) & ('intent' in intent['entities'].keys()):
 		command_type, model_type = intent['entities']['intent'][0]['value'], intent['entities']['model'][0]['value']
