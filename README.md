@@ -26,26 +26,12 @@ Check the demo video in DEMO folder for a glimpse of how the assistant works on 
   Support Vector Classifier* <br>
 7. Supports Train-Test splits and K Fold cross validation.
 
-### **Anna v0.2 features - ** 
+### **Anna v0.2 features - ** [Current Version]
 
 1. Supports multiple visualisations.
 2. Supports multiple models and evaluation reports.
 3. Supports downloading models to disk.
 4. Supports numerical datasets of any size.
-
-### **Anna v0.3 features - ** [Current Version]
-
-1. Modular code (function based for easy jump offs)
-2. Login and Log off feature
-3. Text to intent and action matching (inputs are generalized now, no hard coded commands)
-4. Voice and chat support based on user selection
-5. User can directly upload data and ask the bot to build a model (does not have to go through the entire pipeline and select a model from the list)
-6. Request based data exploration
-- Includes head, tail functions based on user specified rows
-- Data distribution details
-- Display unique values in the columns
-- Display columns with NAN values
-- Display count of columns per data type
 
 ## How to use Anna - 
 1. Install necessary dependencies
@@ -53,3 +39,18 @@ Check the demo video in DEMO folder for a glimpse of how the assistant works on 
 3. Update token in speech_to_text.py file
 4. Use any dataset from the sample
 
+## Voice commands supported - 
+
+greetings = ['hey there anna', 'hello anna', 'hi anna', 'Hai anna', 'hey! anna', 'hey anna'] <br>
+var1 = ['upload a dataset', 'load dataset', 'load data', 'upload data'] <br>
+var2 = ['what can you do', 'show me your skills','show options', 'help me'] <br>
+var3 = ['describe the dataset', 'what is in my dataset', 'can you describe the dataset', 'describe the data', 'describe data'] <br>
+var4 = ['clean the dataset', 'clean dataset', 'clean the data', 'clean my dataset', 'clean the data set'] <br>
+var5 = ['visualize','generate graphs', 'create graphs', 'visualize the dataset', 'create plots', 'plot the dataset', 'show the dataset', 'build plots'] <br>
+var6 = ['build models', 'build a classification model', 'create a classification model', 'build model'] <br>
+LR = ['logistic regression', 'logistic regression model', 'logistic regression classifier', 'regression'] <br>
+KNN = ['okay neighbors', 'k n n', 'okay neighbors classifier'] <br>
+CART = ['decision tree', 'decision tree classifier', 'decision trees'] <br>
+NB = ['gaussian', 'bayes', 'gaussian n b', 'naive bayes'] <br>
+SVC = ['support vector', 'support vector machine', 'support vector classifier'] <br>
+var7 = ['bye', 'cya', 'good bye', 'thank you'] <br>

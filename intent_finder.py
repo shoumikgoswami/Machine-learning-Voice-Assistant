@@ -1,4 +1,5 @@
 from wit import Wit
+import pandas as pd
 
 ''' Code List
 
@@ -19,12 +20,18 @@ svm classifier
 '''
 
 def get_intent(text):
-	client = Wit('Enter WIT Token here')
+	client = Wit('UXH7HZWOS3WUFCZHOH3WYDUSM3ZIJG26')
 	intent = client.message(text)
+	plot_type = 0
+	model_type = 0
 	if ('model' in intent['entities'].keys()) & ('intent' in intent['entities'].keys()):
 		command_type, model_type = intent['entities']['intent'][0]['value'], intent['entities']['model'][0]['value']
 	elif ('model' in intent['entities'].keys()) & ('intent' not in intent['entities'].keys()):
 		command_type, model_type = 0, intent['entities']['model'][0]['value']
+	elif ('plot_type' in intent['entities'].keys()) & ('intent' in intent['entities'].keys()):
+		command_type, plot_type = intent['entities']['intent'][0]['value'], intent['entities']['plot_type'][0]['value']
+	elif ('plot_type' in intent['entities'].keys()) & ('intent' not in intent['entities'].keys()):
+		command_type, model_type = 0, intent['entities']['plot_type'][0]['value']
 	elif ('bye' in intent['entities'].keys()) & ('intent' not in intent['entities'].keys()):
 		command_type, model_type = intent['entities']['bye'][0]['value'], 0
 	elif ('explore' in intent['entities'].keys()) & ('intent' not in intent['entities'].keys()):
@@ -35,6 +42,7 @@ def get_intent(text):
 			row_num = 0
 		command_type = ''
 		model_type = ''
+		plot_type = ''
 	else:
 		command_type, model_type = intent['entities']['intent'][0]['value'], 0
 	if command_type == 'upload data':
@@ -53,6 +61,8 @@ def get_intent(text):
 		cmd = '7E'
 	elif model_type != 0:
 		cmd = 'model'
+	elif plot_type != 0:
+		cmd = 'plot'    
 	elif command_type == 'true':
 		cmd = 'bye'
 	else:
@@ -69,8 +79,17 @@ def get_intent(text):
 		model_type = 'SVC'
 	else:
 		model_type = 0
+
+	with open("log.txt", 'a+') as textfile:
+		if len(command_type)>0:
+			textfile.write('\n' + text + '\t' + '|' + '\t' + command_type)
+		elif (len(explore_type)>0) & (len(command_type)==0):
+			textfile.write('\n' + text + '\t' + '|' + '\t' + explore_type)
+	
 	if len(command_type)>0:
-		return cmd, model_type
+		if (plot_type == 0):
+			return cmd, model_type
+		elif (model_type == 0) & (plot_type != 0):
+			return cmd, plot_type
 	elif (len(explore_type)>0) & (len(command_type)==0):
 		return explore_type, row_num
-

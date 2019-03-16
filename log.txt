@@ -1,0 +1,45 @@
+upload data	|	upload data
+hi	|	error
+describe data	|	describe data
+describe data	|	describe data
+explore the data	|	data exploration
+show me top 5 rows	|	head
+build model	|	build model
+logistic regression	|	error
+logistic regression model	|	build model
+thank you	|	true
+thank you	|	true
+thank you	|	true
+upload data	|	upload data
+describe data	|	describe data
+visualize	|	visualize
+upload data	|	upload data
+visualize	|	visualize
+upload data	|	upload data
+visualize	|	visualize
+upload data	|	upload data
+visualize	|	visualize
+upload data	|	upload data
+visualiz	|	visualize
+upload data	|	upload data
+visualize	|	visualize
+upload data	|	upload data
+visualize	|	visualize
+clean data	|	clean data
+build decision tree model	|	build model
+thank you	|	true
+thank you	|	true
+bleh	|	error
+upload data	|	error
+upload data	|	error
+can you upload daa	|	upload data
+describe the dataset	|	describe data
+can you plot a line graph	|	visualize
+can you create overlaid histogram	|	visualize
+can you create overlaid histogram plot	|	visualize
+can you generate overlaid histogram 	|	visualize
+upload data	|	upload data
+can you generate overlaid histogram	|	visualize
+thankyou	|	error
+thank you	|	true
+upload data	|	error
