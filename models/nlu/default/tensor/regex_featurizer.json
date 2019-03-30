@@ -1,0 +1,14 @@
+[
+    {
+        "name": " number",
+        "pattern": "[0-9]+"
+    },
+    {
+        "name": " plot_type",
+        "pattern": "(?i)(\\bdistribution\\ plot\\b|\\bpair\\ plot\\b|\\bscatter\\ plot\\b|\\bline\\ plot\\b|\\bhistogram\\b|\\boverlaid\\ historgram\\b|\\bbar\\ plot\\b|\\bstacked\\ bar\\ plot\\b)"
+    },
+    {
+        "name": " model_name",
+        "pattern": "(?i)(\\blogisitic\\ regression\\b|\\bk\\ neighbors\\ classifier\\b|\\bdecision\\ tree\\ classifier\\b|\\bgaussian\\ nb\\ classifier\\b|\\bsupport\\ vector\\ classifier\\b)"
+    }
+]

@@ -43,3 +43,71 @@ can you generate overlaid histogram	|	visualize
 thankyou	|	error
 thank you	|	true
 upload data	|	error
+upload data	|	upload_data
+upload data	|	upload_data
+upload data	|	upload_data
+describe the data	|	describe_data
+clean the data	|	clean_data
+visualize	|	visualize
+yes	|	error
+create pair plot	|	visualize
+no	|	error
+create line graph	|	visualize
+create line graph	|	visualize
+upload data	|	upload_data
+create a line plot	|	visualize
+create a histogram	|	visualize
+create histogram	|	visualize
+upload data	|	upload_data
+no	|	error
+upload data	|	upload_data
+upload data	|	upload_data
+describe the data	|	describe_data
+create a line graph	|	visualize
+clean the data	|	clean_data
+clean the data	|	clean_data
+hello	|	error
+upload data	|	error
+upload data	|	error
+hello	|	error
+hello	|	error
+upload data	|	upload_data
+upload data	|	upload_data
+describe the data	|	describe_data
+hello	|	error
+build a line plot	|	visualize
+upload data	|	upload_data
+hello	|	error
+create a line plot	|	visualize
+upload data	|	upload_data
+hello	|	error
+create line plot	|	visualize
+hello	|	error
+upload data	|	upload_data
+hello	|	error
+upload data	|	upload_data
+upload data	|	upload_data
+describe the data	|	describe_data
+hello	|	error
+build line plot	|	visualize
+line plot	|	visualize
+line plot	|	visualize
+hello	|	error
+create line plot	|	visualize
+create line plot	|	visualize
+clean data	|	clean_data
+clean data	|	clean_data
+build logistic regression model	|	build_model
+build logistic regression model	|	build_model
+hello	|	error
+build logistic regression model	|	build_model
+upload data	|	upload_data
+build logistic regression model	|	build_model
+create a histogram	|	visualize
+create histogram	|	visualize
+upload data	|	upload_data
+create histogram	|	visualize
+clean the data	|	clean_data
+clean the data	|	clean_data
+clean data	|	clean_data
+build decision tree model	|	build_model

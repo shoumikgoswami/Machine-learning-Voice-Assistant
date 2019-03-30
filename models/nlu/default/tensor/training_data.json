@@ -1,0 +1,896 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "intent": "upload_data",
+        "text": "upload data"
+      },
+      {
+        "intent": "upload_data",
+        "text": "upload data set"
+      },
+      {
+        "intent": "upload_data",
+        "text": "can you upload the data"
+      },
+      {
+        "intent": "upload_data",
+        "text": "load the data"
+      },
+      {
+        "intent": "describe_data",
+        "text": "describe the data"
+      },
+      {
+        "intent": "describe_data",
+        "text": "describe the dataset"
+      },
+      {
+        "intent": "describe_data",
+        "text": "describe data"
+      },
+      {
+        "intent": "clean_data",
+        "text": "clean the data"
+      },
+      {
+        "intent": "clean_data",
+        "text": "clean the dataset"
+      },
+      {
+        "intent": "clean_data",
+        "text": "remove nan values from the data"
+      },
+      {
+        "intent": "clean_data",
+        "text": "remove nan values"
+      },
+      {
+        "intent": "clean_data",
+        "text": "remove null values"
+      },
+      {
+        "intent": "clean_data",
+        "text": "drop nan values"
+      },
+      {
+        "intent": "clean_data",
+        "text": "drop null values"
+      },
+      {
+        "intent": "clean_data",
+        "text": "remove nan values from all rows"
+      },
+      {
+        "intent": "features",
+        "text": "what are your features"
+      },
+      {
+        "intent": "features",
+        "text": "tell me what you can do"
+      },
+      {
+        "intent": "features",
+        "text": "what can you do"
+      },
+      {
+        "intent": "features",
+        "text": "what all functions can you perform"
+      },
+      {
+        "intent": "visualize",
+        "text": "visualize the data"
+      },
+      {
+        "intent": "visualize",
+        "text": "generate plots"
+      },
+      {
+        "intent": "visualize",
+        "text": "create plots"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 9,
+            "end": 26,
+            "value": "distribution plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "Generate distribution plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 15,
+            "end": 32,
+            "value": "distribution plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "can you create distribution plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 7,
+            "end": 25,
+            "value": "distribution graph",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "create distribution graph"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 9,
+            "end": 18,
+            "value": "pair plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "Generate pair plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 15,
+            "end": 24,
+            "value": "pair plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "can you create pair plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 7,
+            "end": 16,
+            "value": "pair plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "create pair plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 9,
+            "end": 21,
+            "value": "scatter plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "Generate scatter plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 15,
+            "end": 27,
+            "value": "scatter plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "can you create scatter plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 7,
+            "end": 19,
+            "value": "scatter plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "create scatter plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 9,
+            "end": 18,
+            "value": "line plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "Generate line plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 15,
+            "end": 24,
+            "value": "line plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "can you create line plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 7,
+            "end": 17,
+            "value": "line graph",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "create line graph"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 9,
+            "end": 18,
+            "value": "histogram",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "Generate histogram"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 15,
+            "end": 24,
+            "value": "histogram",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "can you create histogram"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 7,
+            "end": 16,
+            "value": "histogram",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "create histogram"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 9,
+            "end": 27,
+            "value": "overlaid histogram",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "Generate overlaid histogram"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 15,
+            "end": 33,
+            "value": "overlaid histogram",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "can you create overlaid histogram"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 7,
+            "end": 25,
+            "value": "overlaid histogram",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "create overlaid histogram"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 9,
+            "end": 17,
+            "value": "bar plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "Generate bar plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 15,
+            "end": 23,
+            "value": "bar plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "can you create bar plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 7,
+            "end": 16,
+            "value": "bar graph",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "create bar graph"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 9,
+            "end": 25,
+            "value": "stacked bar plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "Generate stacked bar plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 15,
+            "end": 31,
+            "value": "stacked bar plot",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "can you create stacked bar plot"
+      },
+      {
+        "intent": "visualize",
+        "entities": [
+          {
+            "start": 7,
+            "end": 24,
+            "value": "stacked bar graph",
+            "entity": "plot_type"
+          }
+        ],
+        "text": "create stacked bar graph"
+      },
+      {
+        "intent": "build_model",
+        "text": "Build model"
+      },
+      {
+        "intent": "build_model",
+        "text": "Build machine learning model"
+      },
+      {
+        "intent": "build_model",
+        "text": "Build a classifier"
+      },
+      {
+        "intent": "build_model",
+        "text": "Generate model"
+      },
+      {
+        "intent": "build_model",
+        "entities": [
+          {
+            "start": 16,
+            "end": 27,
+            "value": "k neighbors",
+            "entity": "model_name"
+          }
+        ],
+        "text": "Can you build a k neighbors classifier"
+      },
+      {
+        "intent": "build_model",
+        "entities": [
+          {
+            "start": 7,
+            "end": 26,
+            "value": "logistic regression",
+            "entity": "model_name"
+          }
+        ],
+        "text": "Create logistic regression model"
+      },
+      {
+        "intent": "build_model",
+        "entities": [
+          {
+            "start": 6,
+            "end": 17,
+            "value": "gaussian nb",
+            "entity": "model_name"
+          }
+        ],
+        "text": "build gaussian nb model"
+      },
+      {
+        "intent": "build_model",
+        "entities": [
+          {
+            "start": 6,
+            "end": 20,
+            "value": "support vector",
+            "entity": "model_name"
+          }
+        ],
+        "text": "build support vector model"
+      },
+      {
+        "intent": "build_model",
+        "entities": [
+          {
+            "start": 6,
+            "end": 19,
+            "value": "decision tree",
+            "entity": "model_name"
+          }
+        ],
+        "text": "build decision tree model"
+      },
+      {
+        "intent": "build_model",
+        "entities": [
+          {
+            "start": 6,
+            "end": 19,
+            "value": "decision tree",
+            "entity": "model_name"
+          }
+        ],
+        "text": "build decision tree classifier"
+      },
+      {
+        "intent": "data_exploration",
+        "text": "explore the data"
+      },
+      {
+        "intent": "data_exploration",
+        "text": "can you help me explore the dataset"
+      },
+      {
+        "intent": "data_exploration",
+        "text": "help me explore the data"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 8,
+            "end": 11,
+            "value": "top",
+            "entity": "head"
+          },
+          {
+            "start": 12,
+            "end": 13,
+            "value": "5",
+            "entity": "number"
+          }
+        ],
+        "text": "show me top 5 rows"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 8,
+            "end": 13,
+            "value": "first",
+            "entity": "head"
+          },
+          {
+            "start": 14,
+            "end": 16,
+            "value": "10",
+            "entity": "number"
+          }
+        ],
+        "text": "show me first 10 rows"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 8,
+            "end": 14,
+            "value": "bottom",
+            "entity": "tail"
+          },
+          {
+            "start": 15,
+            "end": 16,
+            "value": "3",
+            "entity": "number"
+          }
+        ],
+        "text": "show me bottom 3 rows"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "top",
+            "entity": "head"
+          },
+          {
+            "start": 13,
+            "end": 18,
+            "value": "three",
+            "entity": "number"
+          }
+        ],
+        "text": "show the top three rows"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 8,
+            "end": 12,
+            "value": "last",
+            "entity": "tail"
+          },
+          {
+            "start": 13,
+            "end": 14,
+            "value": "7",
+            "entity": "number"
+          }
+        ],
+        "text": "show me last 7 rows"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 9,
+            "end": 14,
+            "value": "first",
+            "entity": "head"
+          },
+          {
+            "start": 15,
+            "end": 19,
+            "value": "five",
+            "entity": "number"
+          }
+        ],
+        "text": "load the first five rows"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 20,
+            "end": 24,
+            "value": "last",
+            "entity": "tail"
+          },
+          {
+            "start": 25,
+            "end": 28,
+            "value": "ten",
+            "entity": "number"
+          }
+        ],
+        "text": "can you show me the last ten rows"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 9,
+            "end": 26,
+            "value": "data distribution",
+            "entity": "data_distribution"
+          }
+        ],
+        "text": "Show the data distribution"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 0,
+            "end": 17,
+            "value": "Data distribution",
+            "entity": "data_distribution"
+          }
+        ],
+        "text": "Data distribution"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 17,
+            "end": 29,
+            "value": "distribution",
+            "entity": "data_distribution"
+          }
+        ],
+        "text": "can you show the distribution of the data"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 19,
+            "end": 29,
+            "value": "data types",
+            "entity": "data_type"
+          }
+        ],
+        "text": "Show the different data types in the dataset"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 9,
+            "end": 19,
+            "value": "data types",
+            "entity": "data_type"
+          }
+        ],
+        "text": "Show the data types"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 0,
+            "end": 10,
+            "value": "Data types",
+            "entity": "data_type"
+          }
+        ],
+        "text": "Data types"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 23,
+            "end": 36,
+            "value": "types of data",
+            "entity": "data_type"
+          }
+        ],
+        "text": "what are the different types of data"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 12,
+            "end": 18,
+            "value": "unique",
+            "entity": "unique"
+          }
+        ],
+        "text": "Show me the unique values in the dataset"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 12,
+            "end": 25,
+            "value": "unique values",
+            "entity": "unique"
+          }
+        ],
+        "text": "Show me the unique values"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 0,
+            "end": 6,
+            "value": "Unique",
+            "entity": "unique"
+          }
+        ],
+        "text": "Unique values"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 13,
+            "end": 24,
+            "value": "unique rows",
+            "entity": "unique"
+          }
+        ],
+        "text": "what are the unique rows in the data"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 21,
+            "end": 28,
+            "value": "missing",
+            "entity": "missing"
+          }
+        ],
+        "text": "Show me columns with missing values"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 0,
+            "end": 14,
+            "value": "Missing values",
+            "entity": "missing"
+          }
+        ],
+        "text": "Missing values"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 13,
+            "end": 20,
+            "value": "missing",
+            "entity": "missing"
+          }
+        ],
+        "text": "Columns with missing values"
+      },
+      {
+        "intent": "data_exploration",
+        "entities": [
+          {
+            "start": 22,
+            "end": 29,
+            "value": "missing",
+            "entity": "missing"
+          }
+        ],
+        "text": "show the columns with missing values"
+      }
+    ],
+    "regex_features": [
+      {
+        "name": " number",
+        "pattern": "[0-9]+"
+      }
+    ],
+    "lookup_tables": [
+      {
+        "name": " plot_type",
+        "elements": [
+          "distribution plot",
+          "pair plot",
+          "scatter plot",
+          "line plot",
+          "histogram",
+          "overlaid historgram",
+          "bar plot",
+          "stacked bar plot"
+        ]
+      },
+      {
+        "name": " model_name",
+        "elements": [
+          "logisitic regression",
+          "k neighbors classifier",
+          "decision tree classifier",
+          "gaussian nb classifier",
+          "support vector classifier"
+        ]
+      }
+    ],
+    "entity_synonyms": [
+      {
+        "value": "distribution plot",
+        "synonyms": [
+          "distribution graph",
+          "distribution chart"
+        ]
+      },
+      {
+        "value": "pair plot",
+        "synonyms": [
+          "pair chart",
+          "pair graph"
+        ]
+      },
+      {
+        "value": "scatter plot",
+        "synonyms": [
+          "scatter graph",
+          "scatter chart"
+        ]
+      },
+      {
+        "value": "line plot",
+        "synonyms": [
+          "line graph",
+          "line chart"
+        ]
+      },
+      {
+        "value": "histogram",
+        "synonyms": [
+          "histogram chart",
+          "histogram graph"
+        ]
+      },
+      {
+        "value": "overlaid historgram",
+        "synonyms": [
+          "overlaid histogram chart",
+          "overlaid histogram graph"
+        ]
+      },
+      {
+        "value": "bar plot",
+        "synonyms": [
+          "bar graph",
+          "bar chart"
+        ]
+      },
+      {
+        "value": "stacked bar plot",
+        "synonyms": [
+          "stacked bar graph",
+          "stacked bar chart"
+        ]
+      },
+      {
+        "value": "kneighbors",
+        "synonyms": [
+          "knn",
+          "k nearest neighbours",
+          "k nearest neighbors",
+          "KNN",
+          "K-NN",
+          "k neighbors"
+        ]
+      },
+      {
+        "value": "support vector",
+        "synonyms": [
+          "svm",
+          "svc",
+          "support vector machines"
+        ]
+      }
+    ]
+  }
+}

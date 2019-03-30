@@ -1,0 +1,2 @@
+model_checkpoint_path: "C:\\Users\\Shoumik\\Desktop\\Jupyter\\voice bot\\Machine-learning-Voice-Assistant-master\\Machine-learning-Voice-Assistant- v0.4\\./models/nlu\\default\\current\\intent_classifier_tensorflow_embedding.ckpt"
+all_model_checkpoint_paths: "C:\\Users\\Shoumik\\Desktop\\Jupyter\\voice bot\\Machine-learning-Voice-Assistant-master\\Machine-learning-Voice-Assistant- v0.4\\./models/nlu\\default\\current\\intent_classifier_tensorflow_embedding.ckpt"

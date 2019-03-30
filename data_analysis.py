@@ -154,7 +154,7 @@ def lineplot(x_data, y_data):
 
 def histogram(data, cumulative=False):
 	_, ax = plt.subplots()
-	ax.hist(data, cumulative = cumulative, color = '#539caf')
+	ax.hist(data, cumulative = cumulative)
 	x_label = data.name
 	ax.set_xlabel(x_label)
 	ax.set_title('Histogram')   	

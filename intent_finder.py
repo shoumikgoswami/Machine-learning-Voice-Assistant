@@ -1,6 +1,10 @@
-from wit import Wit
+from rasa_nlu.model import Interpreter
+from word2number import w2n
 import pandas as pd
-
+import os
+import tensorflow as tf
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+tf.logging.set_verbosity(tf.logging.ERROR)
 ''' Code List
 
 Upload data = 1U
@@ -18,68 +22,77 @@ gaussian nb
 svm classifier
 
 '''
-
 def get_intent(text):
-	client = Wit('UXH7HZWOS3WUFCZHOH3WYDUSM3ZIJG26')
-	intent = client.message(text)
-	plot_type = 0
+	command_type = ''
 	model_type = 0
-	if ('model' in intent['entities'].keys()) & ('intent' in intent['entities'].keys()):
-		command_type, model_type = intent['entities']['intent'][0]['value'], intent['entities']['model'][0]['value']
-	elif ('model' in intent['entities'].keys()) & ('intent' not in intent['entities'].keys()):
-		command_type, model_type = 0, intent['entities']['model'][0]['value']
-	elif ('plot_type' in intent['entities'].keys()) & ('intent' in intent['entities'].keys()):
-		command_type, plot_type = intent['entities']['intent'][0]['value'], intent['entities']['plot_type'][0]['value']
-	elif ('plot_type' in intent['entities'].keys()) & ('intent' not in intent['entities'].keys()):
-		command_type, model_type = 0, intent['entities']['plot_type'][0]['value']
-	elif ('bye' in intent['entities'].keys()) & ('intent' not in intent['entities'].keys()):
-		command_type, model_type = intent['entities']['bye'][0]['value'], 0
-	elif ('explore' in intent['entities'].keys()) & ('intent' not in intent['entities'].keys()):
-		explore_type =  intent['entities']['explore'][0]['value']
-		if ('number' in intent['entities'].keys()):
-			row_num = intent['entities']['number'][0]['value']
-		else:
-			row_num = 0
-		command_type = ''
-		model_type = ''
-		plot_type = ''
+	plot_type = 0
+	explore_type = ''
+	row_num = 0
+
+	interpreter = Interpreter.load("./models/nlu/default/tensor")
+	intent = interpreter.parse(text)
+	
+	if intent['intent']['confidence']>0.60:
+		command_type = intent['intent']['name']
+		if len(intent['entities']) == 0:
+			model_type = 0
+			plot_type = 0
+		elif len(intent['entities']) == 1:
+			if intent['entities'][0]['entity']=='plot_type':
+				plot_type = intent['entities'][0]['value']
+				model_type = 0
+			elif intent['entities'][0]['entity']=='model_name':
+				model_type = intent['entities'][0]['value']
+				plot_type = 0
+			else:
+				explore_type = intent['entities'][0]['entity']
+				model_type = 0
+				plot_type = 0
+				command_type = ''
+		elif len(intent['entities']) == 2:
+			explore_type = intent['entities'][0]['entity']
+			row_num = w2n.word_to_num(intent['entities'][1]['value'])
+			model_type = 0
+			plot_type = 0
+			command_type = ''
 	else:
-		command_type, model_type = intent['entities']['intent'][0]['value'], 0
-	if command_type == 'upload data':
+		command_type = 'error'
+
+	if command_type == 'upload_data':
 		cmd = '1U'
-	elif command_type == 'describe data':
+	elif command_type == 'describe_data':
 		cmd = '2D'
-	elif command_type == 'clean data':
+	elif command_type == 'clean_data':
 		cmd = '3C'
 	elif command_type == 'features':
 		cmd = '4F'
 	elif command_type == 'visualize':
 		cmd = '5V'
-	elif command_type == 'build model':
+	elif command_type == 'build_model':
 		cmd = '6B'
-	elif command_type == 'data exploration':
+	elif command_type == 'data_exploration':
 		cmd = '7E'
-	elif model_type != 0:
+	elif (model_type != 0) & (command_type != 'error'):
 		cmd = 'model'
-	elif plot_type != 0:
+	elif (plot_type != 0) & (command_type != 'error'):
 		cmd = 'plot'    
-	elif command_type == 'true':
-		cmd = 'bye'
+	elif command_type == 'error':
+		cmd = 'error'    
 	else:
-		cmd = 'error'
+		cmd = 'error'  
 	if model_type == 'logistic regression':
 		model_type = 'LR'
-	elif model_type == 'knn classifier':
+	elif model_type == 'kneighbors':
 		model_type = 'KNN'
-	elif model_type == 'decision tree classifier':
+	elif model_type == 'decision tree':
 		model_type = 'CART'
 	elif model_type == 'gaussian nb':
 		model_type = 'NB'
-	elif model_type == 'svm classifier':
+	elif model_type == 'support vector':
 		model_type = 'SVC'
 	else:
 		model_type = 0
-
+		
 	with open("log.txt", 'a+') as textfile:
 		if len(command_type)>0:
 			textfile.write('\n' + text + '\t' + '|' + '\t' + command_type)

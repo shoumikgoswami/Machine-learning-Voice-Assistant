@@ -1,24 +1,12 @@
-''' Anna v0.3 - Your personal assitant for building machine learning models.
+''' Anna v0.5 - Your personal assitant for building machine learning models.
 Creator - @shoumikgoswami
 The idea is to create a voice enabled assistant which can run automated statistical analysis on any given dataset and any model on top of it.
 
 Check the demo video in DEMO folder for a glimpse of how the assistant works on voice commands.
 
-Version 0.4 changelog - 
-1. Custom graph/plot support
-- Distribution plot
-- Pair plot
-- Scatter plot
-- Line plot
-- Histogram
-- Overlaid Historgram
-- Bar plot
-- Stacked bar plot
-2. Direct plot generation or guided mode
-3. Coversation logging
-4. Jump off to root menu in case of errors
-5. Generic output function for code simplification
-
+Version 0.5 changelog - 
+1. Removed Wit text classification integration
+2. RASA NLU integration implemented
 
 How to use Anna - 
 1. Install necessary dependencies
@@ -62,7 +50,7 @@ def get_mode():
 		engine.runAndWait()
 		return 'VOICE'
 	else:
-		get_mode()
+		return get_mode()
 
 def askUser(mode):
 	if mode =='TEXT':
@@ -83,7 +71,7 @@ def askUser(mode):
 			return username
 		else:
 			gen_output(mode, 'Your access code was incorrect')
-			get_mode()
+			return get_mode()
 
 def welcome_user(mode):
 	gen_output(mode, 'Welcome ' + username )
@@ -98,7 +86,7 @@ def get_text(mode):
 		print("I heard: ", text)
 		return text.lower()
 	else: 
-		get_mode()
+		return get_mode()
 
 def gen_output(mode, text):
 	if mode == 'TEXT':
@@ -109,18 +97,22 @@ def gen_output(mode, text):
 		engine.runAndWait()
 	else:
 		print('Error, Set mode of interaction')
-		get_mode()
+		return get_mode()
 
 def get_cmd(mode):
 	text =  get_text(mode)
 	try:
 		cmd, cmd_2 = get_intent(text)
-		return cmd, cmd_2
+		if cmd != 'error':
+			return cmd, cmd_2
+		else:
+			gen_output(mode,"Unable to recognize command, shifting to root menu. Please share your intent again")
+			return get_cmd(mode)	
 	except:
 		gen_output(mode,"Unable to recognize command, shifting to root menu. Please share your intent again")
 		with open("log.txt", 'a+') as textfile:
 			textfile.write('\n' + text + '\t' + '|' + '\t' + 'error')
-		return 'error', 0
+		return get_cmd(mode)
 	
 def cmd_upload_data(mode):
 	gen_output(mode,"Please provide the link to dataset")
@@ -128,7 +120,7 @@ def cmd_upload_data(mode):
 	gen_output(mode,"Dataset loaded. Here are the top 5 rows")
 	print("Dataset: ", data.head())
 	return data
-	get_cmd(mode)
+	return get_cmd(mode)
 	
 def cmd_describe_data(mode, data):
 	gen_output(mode,"Let me show you how the dataset looks")
@@ -140,7 +132,7 @@ def cmd_describe_data(mode, data):
 		gen_output(mode,"Dataset has no NaN values. You are good to go.")
 		clean_data = data
 		return clean_data
-	get_cmd(mode)
+	return get_cmd(mode)
 		
 def cmd_clean_data(mode, data):
 	if data.isnull().values.any() == True:
@@ -152,7 +144,7 @@ def cmd_clean_data(mode, data):
 	else:
 		gen_output(mode,"Dataset is already clean.")
 		return data
-	get_cmd(mode)
+	return get_cmd(mode)
 	
 def cmd_features(mode):
 	gen_output(mode,"I can do a number of actions, please follow the below steps for data analysis")
@@ -163,7 +155,7 @@ def cmd_features(mode):
 	print("5. Build classification model")
 	print("6. Generate model performance scores")
 	print("7. Test the model")
-	get_cmd(mode)
+	return get_cmd(mode)
 	
 # To do here
 def cmd_visualize(mode, plot_type, data):
@@ -180,31 +172,31 @@ def cmd_visualize(mode, plot_type, data):
 		print(" 7. Bar plot")
 		print(" 8. Stacked bar plot")
 		text = get_text(mode)
-		plot_builder(mode, text.lower().replace(' ',''), data)
-	get_cmd(mode)
+		plot_builder(mode, text.lower(), data)
+	return get_cmd(mode)
 
 def plot_builder(mode, plot_type, data):
-	if plot_type == 'distributionplot':
+	if plot_type == 'distribution plot':
 		gen_output(mode,"Hold on while I generate the plot")
 		distributionplot(data)
 		gen_output(mode,"Do you want me to generate more plots?")
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_visualize(mode, 0, data)
+			return cmd_visualize(mode, 0, data)
 		else:
 			return
 		return
-	elif plot_type == 'pairplot':
+	elif plot_type == 'pair plot':
 		gen_output(mode,"Hold on while I generate the plot")
 		pairplot(data)
 		gen_output(mode,"Do you want me to generate more plots?")
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_visualize(mode, 0, data)
+			return cmd_visualize(mode, 0, data)
 		else:
 			return
 		return
-	elif plot_type == 'scatterplot':
+	elif plot_type == 'scatter plot':
 		print(data.columns.values)
 		col_names = list(data.columns.values)
 		gen_output(mode, 'Please select the X column from the list of column names')
@@ -228,12 +220,12 @@ def plot_builder(mode, plot_type, data):
 		gen_output(mode,"Do you want me to generate more plots?")
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_visualize(mode, 0, data)
+			return cmd_visualize(mode, 0, data)
 		else:
 			return
 		return
 
-	elif plot_type == 'lineplot':
+	elif plot_type == 'line plot':
 		print(data.columns.values)
 		col_names = list(data.columns.values)
 		gen_output(mode, 'Please select the X column from the list of column names')
@@ -257,7 +249,7 @@ def plot_builder(mode, plot_type, data):
 		gen_output(mode,"Do you want me to generate more plots?")
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_visualize(mode, 0, data)
+			return cmd_visualize(mode, 0, data)
 		else:
 			return
 		return
@@ -278,12 +270,12 @@ def plot_builder(mode, plot_type, data):
 		gen_output(mode,"Do you want me to generate more plots?")
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_visualize(mode, 0, data)
+			return cmd_visualize(mode, 0, data)
 		else:
 			return
 		return
 
-	elif plot_type == 'overlaidhistogram':
+	elif plot_type == 'overlaid histogram':
 		for col in data.columns.values:
 			if data[col].dtype!='object':
 				print(col)
@@ -309,12 +301,12 @@ def plot_builder(mode, plot_type, data):
 		gen_output(mode,"Do you want me to generate more plots?")
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_visualize(mode, 0, data)
+			return cmd_visualize(mode, 0, data)
 		else:
 			return
 		return
 
-	elif plot_type == 'barplot':
+	elif plot_type == 'bar plot':
 		print(data.columns.values)
 		col_names = list(data.columns.values)
 		gen_output(mode, 'Please select the X column from the list of column names')
@@ -338,12 +330,12 @@ def plot_builder(mode, plot_type, data):
 		gen_output(mode,"Do you want me to generate more plots?")
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_visualize(mode, 0, data)
+			return cmd_visualize(mode, 0, data)
 		else:
 			return
 		return
 
-	elif plot_type == 'stackedbarplot':
+	elif plot_type == 'stacked bar plot':
 		print(data.columns.values)
 		col_names = list(data.columns.values)
 		gen_output(mode, 'Please select the X column from the list of column names')
@@ -367,15 +359,15 @@ def plot_builder(mode, plot_type, data):
 		gen_output(mode,"Do you want me to generate more plots?")
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_visualize(mode, 0, data)
+			return cmd_visualize(mode, 0, data)
 		else:
 			return
 		return
 
 	else: 
 		print("No plots selected")
-		get_cmd(mode)	
-	get_cmd(mode)
+		return get_cmd(mode)	
+	return get_cmd(mode)
 
 def cmd_build_model(mode, model_type, data):
 	gen_output(mode,"Before I build a model for you, please choose the label column.")
@@ -404,7 +396,7 @@ def cmd_build_model(mode, model_type, data):
 		print("5. Support Vector Classifier model")
 		cmd, model_type = get_cmd(mode)
 		model_builder(mode, model_type, X, Y)
-	get_cmd(mode)
+	return get_cmd(mode)
 	
 def model_builder(mode, model_name, X, Y):
 	if model_name == 'LR':
@@ -428,7 +420,7 @@ def model_builder(mode, model_name, X, Y):
 		build_model('Support Vector Classifier', X, Y)
 		gen_output(mode,"Done! I have also saved a copy of the model for you.")
 	else:
-		cmd_build_model(mode, model_type, data)
+		return cmd_build_model(mode, model_type, data)
 	
 def cmd_data_exploration(mode,data):
 	print('**********************************************************')
@@ -440,7 +432,7 @@ def cmd_data_exploration(mode,data):
 		gen_output(mode,'Do you want to continue?')
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_data_exploration(mode,data)
+			return cmd_data_exploration(mode,data)
 		else:
 			return
 		return 
@@ -450,7 +442,7 @@ def cmd_data_exploration(mode,data):
 		gen_output(mode,'Do you want to continue?')
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_data_exploration(mode,data)
+			return cmd_data_exploration(mode,data)
 		else:
 			return
 		return 
@@ -459,7 +451,7 @@ def cmd_data_exploration(mode,data):
 		gen_output(mode,'Do you want to continue?')
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_data_exploration(mode,data)
+			return cmd_data_exploration(mode,data)
 		else:
 			return
 		return 
@@ -469,7 +461,7 @@ def cmd_data_exploration(mode,data):
 		gen_output(mode,'Do you want to continue?')
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_data_exploration(mode,data)
+			return cmd_data_exploration(mode,data)
 		else:
 			return
 		return 
@@ -482,7 +474,7 @@ def cmd_data_exploration(mode,data):
 		gen_output(mode,'Do you want to continue?')
 		text = get_text(mode)
 		if text.lower() == 'yes':
-			cmd_data_exploration(mode,data)
+			return cmd_data_exploration(mode,data)
 		else:
 			return
 		return 
@@ -493,7 +485,7 @@ def cmd_data_exploration(mode,data):
 			gen_output(mode,'Do you want to continue?')
 			text = get_text(mode)
 			if text.lower() == 'yes':
-				cmd_data_exploration(mode,data)
+				return cmd_data_exploration(mode,data)
 			else:
 				return
 			return 
@@ -502,11 +494,11 @@ def cmd_data_exploration(mode,data):
 			gen_output(mode,'Do you want to continue?')
 			text = get_text(mode)
 			if text.lower() == 'yes':
-				cmd_data_exploration(mode,data)
+				return cmd_data_exploration(mode,data)
 			else:
 				return
 			return 
-	get_cmd(mode)
+	return get_cmd(mode)
 	
 # ********************** Initiate Anna **********************
 

@@ -1,0 +1,49 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "intent": "upload_data",
+        "text": "upload data"
+      },
+      {
+        "intent": "upload_data",
+        "text": "upload data set"
+      },
+      {
+        "intent": "upload_data",
+        "text": "can you upload the data"
+      },
+      {
+        "intent": "upload_data",
+        "text": "load the data"
+      },
+      {
+        "intent": "describe_data",
+        "text": "describe the data"
+      },
+      {
+        "intent": "describe_data",
+        "text": "describe the dataset"
+      },
+      {
+        "intent": "describe_data",
+        "text": "describe data"
+      },
+      {
+        "intent": "data_exploration",
+        "text": "explore the data"
+      },
+      {
+        "intent": "data_exploration",
+        "text": "can you help me explore the dataset"
+      },
+      {
+        "intent": "data_exploration",
+        "text": "help me explore the data"
+      }
+    ],
+    "regex_features": [],
+    "lookup_tables": [],
+    "entity_synonyms": []
+  }
+}
